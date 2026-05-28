@@ -3,7 +3,7 @@
  * Plugin Name: Insight - Orlando - Functional
  * Plugin URI: https://github.com/udiinsight/insight-orlando-functional
  * Description: Custom functionality for Orlando Watches
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Insight Marketing
  * Author URI: https://insight-marketing.co.il
  * Text Domain: insight-orlando-functional
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'INSIGHT_ORLANDO_FUNCTIONAL_VERSION', '1.1.0' );
+define( 'INSIGHT_ORLANDO_FUNCTIONAL_VERSION', '1.1.1' );
 
 include_once __DIR__ . '/includes/WFPCore/WordPressContext.php';
 
