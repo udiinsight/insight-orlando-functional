@@ -321,7 +321,25 @@ function flash_sale_apply_sale_prices() {
     
     $start_timestamp = strtotime($start_date);
     $end_timestamp = strtotime($end_date);
-    
+
+    // Clean stale products from flash-sale category before applying
+    $stale_products = get_posts(array(
+        'post_type'      => 'product',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'tax_query'      => array(array(
+            'taxonomy' => 'product_cat',
+            'field'    => 'term_id',
+            'terms'    => $category_id,
+        )),
+    ));
+    foreach ($stale_products as $stale_id) {
+        if (!in_array($stale_id, $product_ids)) {
+            wp_remove_object_terms($stale_id, $category_id, 'product_cat');
+            flash_sale_log('Removed stale product ' . $stale_id . ' from flash-sale category');
+        }
+    }
+
     foreach ($product_ids as $product_id) {
         $product = wc_get_product($product_id);
         
